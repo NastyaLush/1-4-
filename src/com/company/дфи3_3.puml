@@ -1,0 +1,195 @@
+@startuml
+package Exceptions{
+class DethException{
++ DethException(String condition)
+}
+class IsPossitive{
++ IsPositive(String s)
+}
+class UnchekedException{
++ UncheckedException(String condition)
+}
+class RunTimeException{
+}
+
+Exception<|-- RunTimeException
+RunTimeException<|-- DethException
+Exception<|-- UnchekedException
+Exception<|-- IsPossitive
+IsPossitive<-- ActiveException
+UnchekedException<-- ActiveException
+DethException<-- ActiveException
+
+
+class ActiveException{
++ power(int a) throws IsPositive: void
++ canChange (String s) throws UncheckedException: void
++ isTrue(boolean s) throws UncheckedException: void
++ isFalse(boolean s) throws UncheckedException: void
++ death(float a) throws DethException: void
+}
+}
+class camp{
+- name: String
+- location: String
+
++ getLocation(): String
++ getName(): String
++ setLocation(): String
+}
+PassiveObject<|-- camp
+abstract class PassiveObject{
++ name: String
++ getName(): String
+}
+PassiveObject<|-- ActiveObject
+abstract class ActiveObject{
+- condition: String
+# objects: boolean
++ setCondition(String condition): void
++ getCondition(): String
+}
+class Denfort{
+-name: String
+-condition: String
+
++drivePlane(): String
+
++getName(): String
++getCondition(): String
+}
+class Author{
+-name: String
+-condition: String
+
++lookAround(): String
+
++getName(): String
++getCondition(): String
+}
+We o-- Author
+We o-- Denfort
+We o-- Relax
+ActiveObject<|-- We
+Actions<|.. We
+interface Actions{
+ move(ActiveObject o, String whereFrom, String destination, String transport ): String
+ toDo(Activities a, PassiveObject o, String thoughts): String
+ putOnClothes(Things thing, ActiveObject a): String
+ takeOffClothes(Things thing, ActiveObject a): String
+ freeze(ActiveObject a): String
+ suffocate(ActiveObject a ): String
+ whatAboutWeThink(ActiveObject a, String s): String
+}
+class We{
+- name: String
+- conditionInTheMoment: String
+- wearClothes: String
+- health: float
+- lackOfAir: float
+- lackOfFreeze: float
+
++ move(ActiveObject o, PassiveObject whereFrom, PassiveObject destination,String transport ): String
++ toDo(Activities a, PassiveObject o, String thoughts): String
++ putOnClothes(Things thing, ActiveObject a): String
++ takeOffClothes(Things thing, ActiveObject a): String
++ freeze(): String
++ suffocate(): String
++ whatAboutWeThink(ActiveObject a, String s): String
++ flying(): String
+
+
++ getConditionInTheMoment(): String
++ getName(): String
++ getLackfOfFreeze(): float
++ getLackOfAir(): float
++ isWearClothes(): boolean
++ recuraption(): String
+
++setWearClothes(): void
+
++ hashCode(): int
++ toString(): String
++ equals(): boolean
+}
+enum Relax{
+SLEEP,
+LANDING,
+EATING
+}
+
+ActiveObject<|-- Mountains
+
+class Mountains{
+- name: String
+- destruction: int
+- speedDestruction: int
+
++Destroid(AtmosphericPhenomena a): String
+
++ hashCode(): int
++ toString(): String
++ equals(): boolean
+}
+
+class Description{
++ object : PassiveObject
++ content : String
++ author : String
++Description(PassiveObject object, String content, String author)
+
++getObject(): PassiveObject
++getContent(): String
++getAuthor(): String
+
++ hashCode(): int
++ toString(): String
++ equals(): boolean
+}
+ActiveObject<|-- Constractions
+class Constractions{
+- name: String
+- condition: String
+
++ stickTo(ActiveObject subject, ActiveObject object): String
++ getName(): String
+
++ hashCode(): int
++ toString(): String
++ equals(): boolean
+}
+PassiveObject<|-- AtmosphericPhenomena
+
+class AtmosphericPhenomena{
+- name: String
+- power: int
+- destruction: int
+
++ AtmosphericPhenomena()
++ AtmosphericPhenomena(int power)
+
++ containDestruction(): String
++ containDestruction(int destruction): String
+
++ getPower(): int
++ getName(): String
+
++ hashCode(): int
++ toString(): String
++ equals(): boolean
+}
+Activities<-- We
+enum Activities{
+  NOTICE,
+  REMEMBER,
+  GUESSING
+}
+Clothes<-- We
+enum Clothes{
+All_CLOTHES,
+DRESS,
+SHIRT,
+JUMPER,
+PYJAMAS
+}
+@enduml
